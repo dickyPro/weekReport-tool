@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>周报信息</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/sReportglobal.css" />
+<link rel="stylesheet" type="text/css" href="../css/sReportStyle.css" />
+<script type="text/javascript" src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../script/util.js" type="text/javascript"></script>
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+<style type="text/css">
+	button
+	{
+		background:none;
+		border:0;
+	}
+	.div_paddingTop_10
+	{
+		padding-left:5px;
+		padding-top:5px;
+	}
+	.input_no_border{
+	width:95%;
+	border-left:0px;
+	border-top:0px;
+	border-right:0px;
+	border-bottom:1px:
+	background:#F0F0F0;
+	border-style:solid;
+	border-color:#eaeaea;
+	padding-top:20px;
+	}
+</style>
+
+<script type="text/javascript">
+ 		
+		$(document).ready(function () {			
+			var jsresult="";	
+			$.post("../weekreport/queryNullsumbitInfo",{},
+				function(result){
+				if(result==""){
+				jsresult="不存在未提交的同学";
+				}
+				else{
+				 var data = eval('(' + result + ')');	 				
+			 		if(data._ajax_op_flag== "success"){
+			 			var res=data._ajax_data;			 		
+			 			 							 					 		
+				 		for(var i=0;i<res.length;i++){						
+						    jsresult+=res[i]+"\n";		   
+						}				
+			         }
+			      }
+			  var mytxt= document.getElementById("nametext");
+			  	mytxt.value=jsresult;	
+			  	}    			      
+		);
+    })
+   
+	function submitReportsdata(){
+	  
+	   //$("#reportDataForm").attr("action","../outputReport/outputReportsInfo");
+	   //$("#reportDataForm").submit();  
+	   //var data = eval('(' + result + ')');			 		
+	   //var res=data._ajax_data;
+	   //if(res!="")
+	   //{
+	   //window.location.href='loadReports.html';
+         //window.open("../outputfile/weekreportFile.xls","","width=600,height=300");
+       //}
+	}
+	
+</script>
+
+
+
+
+  </head>
+  
+  <body>
+
+  <form id="reportDataForm" action="" data-ajax="false" method="post" >
+   	
+   	 <div style="margin-left: auto;margin-right: auto ;margin-top: 60px;text-align: center;">
+			     未提交本周周报同学:<br/>
+			<textarea name="nametext" rows="10" cols="20" id="nametext" style="margin-top:10px;margin-left:5px;width:50%; height:300px;" placeholder=""></textarea>
+     </div>
+   	 				    
+   <div class="form_Reportbutton" onMouseOver="this.style.cursor='pointer'" onClick="submitReportsdata();">
+			 <label style="color: white;font-weight: bold;font-size: 12pt;">推送消息</label>
+   </div>
+ 
+ </form>
+  </body>
+</html>

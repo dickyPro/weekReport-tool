@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    <context:component-scan base-package="com.gtmap" />
+    <!--1.引入系统配置文件-->
+	<bean id="propertiesConfigure"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:configs/sysconfig.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 资质管理数据源 -->
+	<bean id="dataSource_zzgl"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		scope="singleton">
+		<property name="driverClassName">
+			<value>${sys.jdbc.zzgl.driver}</value>
+		</property>
+		<property name="url">
+			<value>${sys.jdbc.zzgl.url}</value>
+		</property>
+		<property name="username">
+			<value>${sys.jdbc.zzgl.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.jdbc.zzgl.password}</value>
+		</property>
+	</bean>
+
+	<!-- 资质管理数据源 -->
+	<bean id="dataSource_sbgl"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		scope="singleton">
+		<property name="driverClassName">
+			<value>${sys.jdbc.sbgl.driver}</value>
+		</property>
+		<property name="url">
+			<value>${sys.jdbc.sbgl.url}</value>
+		</property>
+		<property name="username">
+			<value>${sys.jdbc.sbgl.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.jdbc.sbgl.password}</value>
+		</property>
+	</bean>
+	
+	<bean id="dataSource_manager"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		scope="singleton">
+		<property name="driverClassName">
+			<value>${sys.jdbc.manager.driver}</value>
+		</property>
+		<property name="url">
+			<value>${sys.jdbc.manager.url}</value>
+		</property>
+		<property name="username">
+			<value>${sys.jdbc.manager.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.jdbc.manager.password}</value>
+		</property>
+	</bean>
+	
+	<bean id="dataSource_weekreport"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		scope="singleton">
+		<property name="driverClassName">
+			<value>${sys.jdbc.weekreport.driver}</value>
+		</property>
+		<property name="url">
+			<value>${sys.jdbc.weekreport.url}</value>
+		</property>
+		<property name="username">
+			<value>${sys.jdbc.weekreport.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.jdbc.weekreport.password}</value>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- 配置系统获取数据库操作类bean -->
+	<bean id="jdbcTemplateEx_zzgl"  class="com.gtmap.platform.jdbc.JdbcTemplateEx" >
+		<property name="dataSource">
+			<ref bean="dataSource_zzgl"/>
+		</property>
+	</bean>
+	
+    <bean id="jdbcTemplateEx_sbgl"  class="com.gtmap.platform.jdbc.JdbcTemplateEx" >
+		<property name="dataSource">
+			<ref bean="dataSource_sbgl"/>
+		</property>
+	</bean>
+	
+	<bean id="jdbcTemplateEx_manager"  class="com.gtmap.platform.jdbc.JdbcTemplateEx" >
+		<property name="dataSource">
+			<ref bean="dataSource_manager"/>
+		</property>
+	</bean>
+	
+	<bean id="jdbcTemplateEx_weekreport"  class="com.gtmap.platform.jdbc.JdbcTemplateEx" >
+		<property name="dataSource">
+			<ref bean="dataSource_weekreport"/>
+		</property>
+	</bean>
+	
+	<!-- 数据库操作类bean -->
+	<bean id="jdbcSupport_zzgl"  class="com.gtmap.platform.jdbc.JdbcDaoSupportEx" >
+		<property name="jdbcTemplateEx">
+			<ref local="jdbcTemplateEx_zzgl"/>
+		</property>
+	</bean>
+	
+	<bean id="jdbcSupport_sbgl"  class="com.gtmap.platform.jdbc.JdbcDaoSupportEx" >
+		<property name="jdbcTemplateEx">
+			<ref local="jdbcTemplateEx_sbgl"/>
+		</property>
+	</bean>
+	
+   <bean id="jdbcSupport_manager"  class="com.gtmap.platform.jdbc.JdbcDaoSupportEx" >
+		<property name="jdbcTemplateEx">
+			<ref local="jdbcTemplateEx_manager"/>
+		</property>
+	</bean>
+	
+	<bean id="jdbcSupport_weekreport"  class="com.gtmap.platform.jdbc.JdbcDaoSupportEx" >
+		<property name="jdbcTemplateEx">
+			<ref local="jdbcTemplateEx_weekreport"/>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>个人周报</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/sReportglobal.css" />
+<link rel="stylesheet" type="text/css" href="../css/sReportStyle.css" />
+<script type="text/javascript" src="../jquery/jquery-1.9.1.min.js"></script>
+<script src="../script/util.js" type="text/javascript"></script>
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+
+<style type="text/css">
+	button
+	{
+		background:none;
+		border:0;
+	}
+	.div_paddingTop_10
+	{
+		padding-left:5px;
+		padding-top:5px;
+	}
+	.input_no_border{
+	width:95%;
+	border-left:0px;
+	border-top:0px;
+	border-right:0px;
+	border-bottom:1px:
+	background:#F0F0F0;
+	border-style:solid;
+	border-color:#eaeaea;
+	padding-top:20px;
+	}
+</style>
+
+<script type="text/javascript">	
+    $(document).ready(function () {
+    		
+			var jsconfig="";
+			$.post("../weekreport/queryReportPersonsInfo",{},
+		 		function(result){
+		 		 var data = eval('(' + result + ')');
+			 		if(data._ajax_op_flag== "success"){
+			 			var res=data._ajax_data;
+			 			var mySelect= document.getElementById("cc");
+			 			mySelect.add(new Option("",""));	
+				 		for(var i=0;i<res.length;i++){						
+						    var opp = new Option(res[i].name,res[i].name);
+                            opp.name = res[i].name;
+                            //将option添加到select标签里面
+                            mySelect.add(opp);						   
+						}				
+			         }
+			      }
+			);
+    })
+	function submitReport(){
+	
+	      var user= document.getElementById("cc");
+          if (user==null||user.value=="")
+          {
+             alert("请填写姓名!")
+             return ;
+          }
+	      var las= document.getElementById("lastWeekReport");
+          if (las==null||las.value=="")
+          {
+             alert("上周工作内容不能为空!")
+             return ;
+          }
+           var nex= document.getElementById("nextWeekReport");
+          if (nex==null||nex.value=="")
+          {
+             alert("下周工作内容不能为空!")
+             return ;
+          }
+          
+	    $("#personReportForm").attr("action","../weekreport/getweekReportInfo");
+		$("#personReportForm").submit();
+	}
+	
+</script>
+
+  </head>
+  
+  <body>
+    <div class="page_header">
+    <div>个人周报</div>  
+    </div>
+    
+   <div>
+    <form id="personReportForm" action="" data-ajax="false" method="post" >
+        <p> 
+        <div style="display: table-cell;width: 70px;">
+        <label>填写人:</label>
+        </div>
+	          <select id="cc" name="cc" style="width:200px;height:25px;border:1px rgba(0, 0, 0, 0.2) solid;" class="easyui-combobox" name="dept";"></select>                                    
+        </p> 
+		       
+         <p>	
+			      请您填写上周工作总结:<br/>
+			<textarea name="lastWeekReport" rows="8" cols="20" id="lastWeekReport" style="margin-top:10px;margin-left:5px;width:70%; height:180px;" placeholder="...内容太多请分条列述...  "></textarea>
+		 </p>
+	     <p>	
+			      请您填写上周完成情况：<br/>
+			<textarea name="lastWeekProgress" rows="6" cols="20" id="lastWeekProgress" style="margin-top:10px;margin-left:5px;width:70%; height:30px;" placeholder=" ...工作进度...  "></textarea>
+		</p>
+		
+	     <div style="margin-top:50px; margin-bottom:50px;">
+	     <hr width="100%" size="5" noshade="noshade" align="left" color="#46bb3e" />	
+	     </div>
+	     
+         <p>	     
+			      请您填写下周工作计划：<br/>
+			<textarea name="nextWeekReport" rows="6" cols="20" id="nextWeekReport" style="margin-top:10px;margin-left:5px;width:70%; height:180px;" placeholder="...内容太多请分条列述...   "></textarea>
+		 </p>
+		 		
+        <p>
+		 <div class="form_Reportbutton" onMouseOver="this.style.cursor='pointer'" onClick="submitReport();">
+			 <label style="color: white;font-weight: bold;font-size: 12pt;">提  交</label>
+	   	</div>
+	   </p>
+	 	  
+     </form>   
+   </div>
+    
+  
+    
+  </body>
+</html>

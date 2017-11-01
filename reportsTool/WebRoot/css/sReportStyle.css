@@ -1,0 +1,303 @@
+
+
+.page_body{
+	padding-top:40px;
+	padding-left:5px;
+	padding-right:5px;
+    color:#6c6262;
+}
+
+.page_header {
+	/*background: #0B99AE;*/
+	background: #e5e5e5;
+	height: 40px;
+    right:0; 
+	top:0; 
+	width:100%; 
+	/*position:fixed;
+	z-index:2; */
+}
+
+.page_header div {
+	font-size: 12pt;
+	height:100%;
+	font-weight: bolder;
+	color: black;
+	line-height:30px;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.page_footer {
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.clear {
+	clear: both;
+}
+
+.pagebar {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: none;
+}
+
+.form_little_btn {
+	border-radius: 2px;
+	background: #F07845;
+	border: none;
+	height: 25px;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px 10px;
+}
+
+.div_date {
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 20px; 						
+	border-radius:5px;
+	display:block;
+	text-align:center;
+}
+
+.form_Reportbutton {
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 60px; 
+	width:140px;	
+	height:30px;			
+	text-align: center;
+	cursor: pointer;
+	border-radius:5px;
+	background:#46bb3e;
+	display:block;
+	padding-top:10px;
+}
+
+}
+
+.foot {
+	margin: 10px;
+	padding-top: 0px;
+	color: #616466;
+	font-size: 12px;
+	text-align: left;
+}
+
+.foot div {
+	padding: 2px;
+	color: #616466;
+	font-size: 12px;
+}
+
+.foot em {
+	color: red;
+}
+
+.box{
+	border-radius:4px;border: 1px #DFDFDF solid;text-align: center;background: #FFFFFF;
+	margin: 5px 5px 0px 5px;padding: 5px;text-align: left;color: #616466;font-size: 11pt;
+}
+
+.box .right{
+	font-size:12px;text-align: left;
+}
+
+.corner{
+	padding-top:5px;color: #0B99AF;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.equal {
+	display: table;
+	border-collapse: separate;
+}
+
+.row {
+	display: table-row;
+}
+
+.row div {
+	display: table-cell;
+}
+
+.row .one {
+	width: 65px;
+}
+.row .long_txt{
+	overflow: hidden; 
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.row_right_icon {
+	border-left: 1px solid #DFDFDF;
+	float: right;
+	width: 40px;;
+	height: 45px;
+	position: relative;
+	top: -45px;
+	text-align: center;
+}
+
+.row .longone {
+	width: 110px;
+}
+
+.row img{
+	width: 16px;
+	height: 16px;
+}
+
+.row .img_arrow {
+	width:11px;
+	height:15px;
+}
+
+.width_85 {
+	width: 85px;
+}
+
+.one label {
+	padding-right:10px;
+	font-size: 15px;
+	color: #606465;
+	font-weight: normal;
+	color: #8F8F8F;
+}
+
+.row font {
+	font-weight: normal;
+	color: #1A1A1A;
+}
+
+
+.input_no_border{
+	padding: 0px;
+	background: transparent;
+	border-style: none;
+	-webkit-appearance: none;
+	box-sizing: border-box;
+}
+
+.input_text {
+	border: #CED4D9 1px solid;
+	height: 25px;
+	width: 200px;
+	border-radius: 5px;
+}
+
+.div_35{
+    clear:both;
+	height:25px;
+	border:1px solid;
+}
+
+.div_35 input{
+	width:100%;
+}
+
+.div_35 select{
+	width:100%;
+	padding-right:5px;
+}
+
+/* Fix for IE 8 putting the arrows behind the select element. */
+
+.lt-ie9 .dropdown {
+  z-index: 1;
+}
+
+.lt-ie9 .dropdown-select {
+  z-index: -1;
+}
+
+.lt-ie9 .dropdown-select:focus {
+  z-index: 3;
+}
+
+/* Dirty fix for Firefox adding padding where it shouldn't. */
+
+@-moz-document url-prefix() {
+  .dropdown-select {
+    padding-left: 6px;
+  }
+}
+
+/********loading*********/
+.cui-w-loading,.cui-white-logo {
+	background: url(../images/biz/comm_bg.png) no-repeat -100px -105px;
+	background-size: 242px 260px;
+}
+
+.cui-breaking-load {
+	width: 80px;
+	height: 70px;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, .7);
+	margin: auto;
+	position: relative;
+	z-index: 9999;
+}
+
+.cui-w-loading {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	left: 50%;
+	top: 50%;
+	margin: -25px 0 0 -25px;
+	background-position: -97px -162px;
+}
+
+.cui-white-logo {
+	position: absolute;
+	width: 25px;
+	height: 28px;
+	left: 50%;
+	top: 50%;
+	z-index: 9;
+	margin: -15px 0 0 -15px;
+	background-position: -151.5px -132.5px;
+}
+
+.cui-w-loading {
+	-webkit-animation: cui-loading 1.58s linear infinite;
+	-moz-animation: cui-loading 1.58s linear infinite;
+	-ms-animation: cui-loading 1.58s linear infinite;
+	animation: cui-loading 1.58s linear infinite;
+	-webkit-transform-origin: 50% 49%;
+	-moz-transform-origin: 50% 49%;
+	-ms-transform-origin: 50% 49%;
+	transform-origin: 50% 49%;
+}
+
+.loading-ui {
+	left: 50%;
+	top: 50%;
+	margin-left: -27px;
+	margin-top: -27px;
+	z-index: 100;
+	position: fixed !important;
+	border-radius: 10px;
+}
+
+.loading-ui-mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	width: 100%;
+	height: 100%;
+}

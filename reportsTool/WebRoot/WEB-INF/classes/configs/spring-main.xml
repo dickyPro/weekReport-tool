@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    <context:component-scan base-package="com.gtmap" />
+    <!--1.引入系统配置文件-->
+	<bean id="propertiesConfigure"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:configs/sysconfig.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="dataSource_weekreport"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		scope="singleton">
+		<property name="driverClassName">
+			<value>${sys.jdbc.weekreport.driver}</value>
+		</property>
+		<property name="url">
+			<value>${sys.jdbc.weekreport.url}</value>
+		</property>
+		<property name="username">
+			<value>${sys.jdbc.weekreport.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.jdbc.weekreport.password}</value>
+		</property>
+	</bean>
+	
+	<bean id="jdbcTemplateEx_weekreport"  class="com.gtmap.platform.jdbc.JdbcTemplateEx" >
+		<property name="dataSource">
+			<ref bean="dataSource_weekreport"/>
+		</property>
+	</bean>
+	
+	<bean id="jdbcSupport_weekreport"  class="com.gtmap.platform.jdbc.JdbcDaoSupportEx" >
+		<property name="jdbcTemplateEx">
+			<ref local="jdbcTemplateEx_weekreport"/>
+		</property>
+	</bean>
+</beans>
